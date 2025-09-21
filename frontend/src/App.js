@@ -1,36 +1,38 @@
-// src/App.js
 import React, { useState, useEffect } from 'react';
 import Frame1 from './components/Frame1';
 import Frame2 from './components/Frame2';
 import Frame3 from './components/Frame3'; 
 import Frame4 from './components/Frame4';  
-
 import axios from 'axios';
-console.log('▶ Frame3 is →', Frame3);
+
 export default function App() {
   const [page, setPage] = useState('frame1');
   const [sdkReady, setSdkReady] = useState(false);
   const [user, setUser] = useState(null);
-
-  // 1) 카카오 SDK 로드
+  
+  // 카카오 SDK 로드
   useEffect(() => {
+    const KAKAO_JS_KEY = process.env.REACT_APP_KAKAO_JS_KEY;
+
     if (!window.Kakao) {
       const script = document.createElement('script');
       script.src = 'https://developers.kakao.com/sdk/js/kakao.js';
       script.onload = () => {
-        window.Kakao.init(process.env.REACT_APP_KAKAO_JS_KEY);
+        if (!window.Kakao.isInitialized()) {
+          window.Kakao.init(KAKAO_JS_KEY);
+        }
         setSdkReady(true);
       };
       document.head.appendChild(script);
     } else {
       if (!window.Kakao.isInitialized()) {
-        window.Kakao.init(process.env.REACT_APP_KAKAO_JS_KEY);
+        window.Kakao.init(KAKAO_JS_KEY);
       }
       setSdkReady(true);
     }
   }, []);
-
-  // 2) 로그인
+  
+  // 로그인
   const handleLogin = () => {
     window.Kakao.Auth.login({
       scope: 'profile_nickname,account_email',
@@ -40,13 +42,17 @@ export default function App() {
           .then(res => {
             setUser(res.data);
             setPage('frame2');
+          })
+          .catch(err => {
+            console.error("카카오 로그인 실패", err);
+            alert("카카오 로그인 실패");
           });
       },
       fail: console.error
     });
   };
-
-  // 3) 선호 저장
+  
+  // 선호 저장
   const handleSelectPrefs = (prefsArray) => {
     axios
       .post('http://localhost:5000/signup/preferences', {
@@ -57,16 +63,15 @@ export default function App() {
         setPage('frame3');
       });
   };
-
-  // 4) Frame3 버튼
+  
+  // Frame3 버튼
   const handleRecommend = () => setPage('frame4');
-  const handleMap       = () => setPage('frame6');
-
-  // 5) 화면 분기
-  if (!sdkReady) return <div>잠시만요…</div>;
-
+  const handleMap = () => setPage('frame6');
+  
+  // 화면 분기
   switch (page) {
     case 'frame1':
+      // 여기에서 sdkReady와 onLogin을 모두 전달
       return <Frame1 sdkReady={sdkReady} onLogin={handleLogin} />;
     case 'frame2':
       return <Frame2 userId={user.user_id} onSelect={handleSelectPrefs} />;
