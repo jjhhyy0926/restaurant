@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- 폰트 얼굴 등록 -->
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/fonts/YeongdoOTF-Heavy.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="%PUBLIC_URL%/fonts/Hangeuljaemin6.0.otf"
+      as="font"
+      type="font/otf"
+      crossorigin
+    />
+    <style>
+      @font-face {
+        font-family: 'Yeongdo OTF';
+        src: url('%PUBLIC_URL%/fonts/YeongdoOTF-Heavy.otf') format('opentype');
+        font-weight: 900;
+      }
+      @font-face {
+        font-family: 'Hangeuljaemin6.0';
+        src: url('%PUBLIC_URL%/fonts/Hangeuljaemin6.0.otf') format('opentype');
+        font-weight: 400;
+      }
+    </style>
+
+    <title>Restaurant App</title>
+  </head>
+  <body>
+    <noscript>JavaScript가 꺼져 있으면 제대로 동작하지 않습니다.</noscript>
+    <div id="root"></div>
+  </body>
+</html>

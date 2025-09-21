@@ -1,0 +1,82 @@
+/* src/components/Frame3.css */
+.frame3 {
+  position: relative;
+  width: 402px;
+  height: 874px;
+  background: linear-gradient(
+    to bottom,
+    #FFFFFF 0%, 
+    #FFFFFF 1%, 
+    #FFFAEF 20%
+  );
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  margin: auto;
+}
+
+/* 상단 홈/유저 아이콘 */
+.frame3__icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  opacity: 0.3;
+  cursor: pointer;
+}
+.frame3__icon--home {
+  left: 277px;
+  top: 20px;
+  opacity: 1;
+}
+.frame3__icon--user {
+  left: 340px;
+  top: 21px;
+}
+
+/* 공통 버튼 스타일 */
+.frame3__btn {
+  position: absolute;
+  width: 306px;
+  height: 120px;
+  left: calc(50% - 153px);
+
+  background: #FFFFFF;
+  border: 1px solid #FDDA97;
+  box-shadow: 0 4px 4px rgba(0,0,0,0.25);
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.frame3__btn:hover {
+  box-shadow: 0 6px 6px rgba(0,0,0,0.3);
+}
+
+/* 버튼 위치 */
+.frame3__btn--recommend {
+  top: 280px;
+}
+/* 여기를 432px → 464px 로 변경 (gap: 64px) */
+.frame3__btn--map {
+  top: 464px; /* 280 + 120 + 64 */
+}
+
+/* 버튼 내부 아이콘/레이블 */
+.frame3__btn-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0;
+}
+.frame3__btn-label {
+  margin-top: 8px;
+  font-family: 'Hangeuljaemin6.0', serif;
+  font-size: 18px;
+  line-height: 33px;
+  letter-spacing: 0.14em;
+  color: #000;
+  text-align: center;
+}

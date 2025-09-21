@@ -1,0 +1,26 @@
+/* index.css */
+@font-face {
+  font-family: 'Hangeuljaemin6.0';
+  src: local('Hangeuljaemin6.0'),
+       url('./fonts/Hangeuljaemin6.0.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Yeongdo OTF';
+  src: local('Yeongdo OTF'),
+       url('./fonts/YeongdoOTF-Heavy.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+/* 브라우저 기본 여백 제거 + 중앙 정렬 */
+body {
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}

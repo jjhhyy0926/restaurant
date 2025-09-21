@@ -1,0 +1,96 @@
+/* src/components/Frame2.css */
+.frame2 {
+  position: relative;
+  width: 402px;
+  height: 874px;
+  background: #FFFAEF;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+/* 상단 홈/유저 아이콘 */
+.frame2__icon {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  opacity: 0.3;
+}
+.frame2__icon--home { left: 277px; top: 20px; }
+.frame2__icon--user { left: 340px; top: 21px; }
+
+/* 중앙 체크 아이콘 */
+.frame2__check {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  left: calc(50% - 15px);
+  top: 152px;
+  opacity: 0.7; 
+}
+
+/* 질문 텍스트 */
+.frame2__title {
+  position: absolute;
+  top: 205px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: 28px;
+  margin: 0;
+
+  font-family: 'Hangeuljaemin6.0', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.14em;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* 2×3 카드 그리드 */
+.frame2__grid {
+  position: absolute;
+  left: 23px;
+  top: 307px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 175px);
+  grid-template-rows: repeat(3, 131px);
+  column-gap: 6px;
+  row-gap: 4px;
+}
+
+/* 개별 카드 스타일 */
+.frame2__card {
+  box-sizing: border-box;
+  border: 1.3px solid #D3CFC7;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.frame2__card.selected {
+  border-color: #FDDA97;
+}
+
+/* 카드 내부 아이콘 */
+.frame2__card-icon {
+  width: 54px;
+  height: 54px;
+}
+
+/* 카드 내부 레이블 */
+.frame2__card-label {
+  margin-top: 8px;
+  font-family: 'Hangeuljaemin6.0', serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.14em;
+  color: #000;
+}

@@ -1,0 +1,57 @@
+/* components/Frame4.css */
+
+.frame4 {
+  position: relative;
+  width: 402px;
+  height: 874px;
+  margin: 0 auto;
+  background: #ffffff;
+  font-family: 'Pretendard', sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.header {
+  text-align: center;
+}
+
+.girl-img {
+  width: 150px;
+  margin: 20px 0;
+}
+
+.question {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.restaurant-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.restaurant-box {
+  background-color: #fdf3d9;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.05);
+  transition: transform 0.2s;
+}
+
+.restaurant-box:hover {
+  transform: scale(1.02);
+}
+
+.restaurant-box strong {
+  font-size: 16px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.restaurant-box p {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}

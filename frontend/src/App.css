@@ -1,0 +1,38 @@
+/* src/index.css */
+/* 한글 폰트 */
+@font-face {
+  font-family: 'Hangeuljaemin6.0';
+  src: url('./fonts/Hangeuljaemin6.0.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 영어 폰트 (Yeongdo OTF) */
+@font-face {
+  font-family: 'Yeongdo OTF';
+  src: url('./fonts/YeongdoOTF-Heavy.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+/* 브라우저 기본 여백 제거 + 중앙 정렬 */
+body {
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* iPhone 16 Pro 크기 래퍼 */
+.screen {
+  position: relative;
+  width: 402px;
+  height: 874px;
+  background: #FFFAEF;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
