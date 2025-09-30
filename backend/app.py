@@ -5,11 +5,16 @@ from sqlalchemy.orm import sessionmaker
 from models import Base, User, Restaurant, Pref
 from kakao import get_kakao_user
 import os
+import json
+import logging
+
+# 로그 설정
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 CORS(app)
 
-# 데이터베이스 연결
+# DB 연결
 engine = create_engine("sqlite:///restaurant.db")
 Base.metadata.create_all(engine)
 Session = sessionmaker(bind=engine)
@@ -85,11 +90,19 @@ def recommend():
         Restaurant.category.in_(preferred_categories)
     )
 
+    # 거리 계산 및 필터링 (반경 0.05도 ≈ 약 5km)
+    max_distance = 0.015
     restaurants = [
         (((r.lat - lat) ** 2 + (r.lng - lng) ** 2) ** 0.5, r)
         for r in qs
     ]
+    restaurants = [r for r in restaurants if r[0] <= max_distance]
     restaurants.sort(key=lambda x: x[0])
+
+    # 👇 로그 찍기
+    app.logger.info(f"현재 위치: {lat}, {lng}")
+    app.logger.info(f"선호 카테고리: {preferred_categories}")
+    app.logger.info(f"식당 수: {len(restaurants)}")
 
     result = [
         {"name": r.name, "category": r.category, "lat": r.lat, "lng": r.lng}
@@ -104,10 +117,15 @@ def get_user(user_id):
     user = session.query(User).get(user_id)
     if not user:
         return jsonify({"error": "User not found"}), 404
-    return jsonify({
-        "id": user.id,
-        "prefs": [p.name for p in user.prefs]
-    })
+
+    return app.response_class(
+        response=json.dumps({
+            "id": user.id,
+            "prefs": [p.name for p in user.prefs]
+        }, ensure_ascii=False),
+        status=200,
+        mimetype="application/json"
+    )
 
 if __name__ == "__main__":
     app.run(debug=True)

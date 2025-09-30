@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Float, Table, ForeignKey
 from sqlalchemy.orm import relationship
 
-# 1) Base 선언 (이게 빠지면 ImportError 발생합니다)
+# 1) Base 선언
 Base = declarative_base()
 
 # 2) 사용자⇄선호음식 다대다 매핑 테이블
@@ -20,7 +20,6 @@ class User(Base):
     id = Column(Integer, primary_key=True)
     kakao_id = Column(String, unique=True, nullable=False)
     name = Column(String, nullable=True)
-    # 다대다 관계 설정
     prefs = relationship('Pref', secondary=user_pref, back_populates='users')
 
 # 4) Pref 모델
@@ -35,7 +34,6 @@ class Restaurant(Base):
     __tablename__ = 'restaurants'
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
-    category = Column(String, nullable=False)  # e.g. 한식, 일식
+    category = Column(String, nullable=False)
     lat = Column(Float, nullable=False)
     lng = Column(Float, nullable=False)
-    # 추가로 필요하다면 feature 칼럼들 추가 가능
